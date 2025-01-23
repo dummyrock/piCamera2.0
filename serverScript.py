@@ -3,6 +3,7 @@ from flask import Flask, render_template, Response
 import io
 import detectBallCam
 import takePicture
+import flickerLights.py
 
 app = Flask(__name__)
 
@@ -20,10 +21,11 @@ def liveCam():
 def highSpeedCam():
     global movement_detected
     highSpeedCam = takePicture.highSpeedCamera()
-    print("im trying to run")
+    strobeLight = flickerLights.flickerLights()
     while True:
         if movement_detected:
             movement_detected = False
+            strobeLight.turnOnStrobe()
             img = highSpeedCam.takePhoto()
             print("taking photo now")
             yield (b'--frame\r\n'

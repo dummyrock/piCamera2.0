@@ -1,0 +1,7 @@
+smbus
+opencv-python
+numpy
+time
+picamera2
+io
+flask
