@@ -1,6 +1,7 @@
 from picamera2 import Picamera2
 import time
 import io
+import uuid
 
 class highSpeedCamera:
     def __init__(self):
@@ -15,3 +16,8 @@ class highSpeedCamera:
         self.picam2.capture_file(data,format="jpeg")
         
         return data.getvalue()
+    
+    def savePhoto(self,data,uid): 
+        output_file = f"images/photo_{uid}.jpg"
+        with open(output_file,"wb") as f:
+            f.write(data)

@@ -14,7 +14,7 @@ def liveCam():
     liveCam = detectBallCam.liveCamera()
     while True:
         img = liveCam.lookForBall()
-        movement_detected = liveCam.check_movement()
+        movement_detected = liveCam.check_movement() 
         yield (b'--frame\r\n'
                b'Content-Type: image/jpeg\r\n\r\n' + img + b'\r\n\r\n')
 
@@ -24,10 +24,12 @@ def highSpeedCam():
     strobeLight = flickerLights.flickerLights()
     while True:
         if movement_detected:
+
             movement_detected = False
             strobeLight.turnOnStrobe()
+            
             img = highSpeedCam.takePhoto()
-            print("taking photo now")
+            
             yield (b'--frame\r\n'
                b'Content-Type: image/jpeg\r\n\r\n' + img + b'\r\n\r\n')
        
