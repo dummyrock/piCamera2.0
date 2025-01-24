@@ -4,7 +4,7 @@ import time
 
 class liveCamera:
     def __init__(self):
-        self.cap = cv2.VideoCapture(1)
+        self.cap = cv2.VideoCapture(0)
         if not self.cap.isOpened():
             print("Error: Could not open video capture device.")
         self.can_play_beep = True
@@ -47,7 +47,7 @@ class liveCamera:
         h, w, __ = self.getShape(frame)
               
         cropped_h = h-h//4
-        cropped_w = w-w//4
+        cropped_w = w//4
         
         cropped_img = frame[cropped_h:, cropped_w:]
         
@@ -70,11 +70,11 @@ class liveCamera:
             circles = np.uint16(np.around(circles))  # Convert circle parameters to integers
             for (x, y, r) in circles[0, :]:
                 # Draw the circle
-                cv2.circle(frame, (x + cropped_w, y + cropped_h), r, (0, 255, 0), 2)
+                cv2.circle(frame, (cropped_w, y + cropped_h), r, (0, 255, 0), 2)
                 # Draw the center
-                cv2.circle(frame, (x+cropped_w, y+cropped_h), 5, (0, 0, 255), -1)
+                cv2.circle(frame, (cropped_w, y+cropped_h), 5, (0, 0, 255), -1)
                 # Add text
-                cv2.putText(frame, "Golf Ball", ((x + cropped_w)- 40, (y + cropped_h) - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 2)
+                cv2.putText(frame, "Golf Ball", ((cropped_w)- 40, (y + cropped_h) - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 2)
                 
                 x_rounded = int(x) - int(self.prev_ball_xy[0])
                 y_rounded = int(y) - int(self.prev_ball_xy[1])

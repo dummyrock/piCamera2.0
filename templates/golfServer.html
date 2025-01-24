@@ -2,15 +2,18 @@
 <html>
 <head>
     <title>Camera</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-    <h1>liveCamera</h1>
-    <div>
+<div class="mainBody">
+    <div class="child">
+	<h1>Live Camera</h1>
         <img src = "{{ url_for('liveCamera') }}" alt="live camera image">
-    </div>
-    <h1>highSpeedPhoto</h1>
-    <div>
+    </div> 
+    <div class="clild">
+	<h1>highSpeedPhoto</h1>
         <img src = "{{ url_for('highSpeedPhoto') }}" alt="high speed photo">
     </div>
+</div>
 </body>
 </html>

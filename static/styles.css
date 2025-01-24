@@ -1,0 +1,10 @@
+.mainBody{
+	display: flex;
+	justify-content: space-between;
+	gap:10px;
+}
+
+.child{
+	display:inline-block;
+	vertical-align: middle;
+}

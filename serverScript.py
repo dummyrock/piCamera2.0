@@ -3,7 +3,7 @@ from flask import Flask, render_template, Response
 import io
 import detectBallCam
 import takePicture
-import flickerLights.py
+import flickerLights
 
 app = Flask(__name__)
 
@@ -11,7 +11,7 @@ movement_detected = False
 
 def liveCam():
     global movement_detected
-    liveCam = detectBallCam.liveCamera() 
+    liveCam = detectBallCam.liveCamera()
     while True:
         img = liveCam.lookForBall()
         movement_detected = liveCam.check_movement()
